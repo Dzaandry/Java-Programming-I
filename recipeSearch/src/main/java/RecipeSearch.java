@@ -28,50 +28,55 @@ public class RecipeSearch {
                     break;
                 }
 
-                if (command.equals("list")) {
-                    addRecipes(scan, recipes);
+                switch (command) {
+                    case "list":
+                        addRecipes(scan, recipes);
 
-                    System.out.println("Recipes:");
-                    for (Recipe recipe : recipes) {
-                        System.out.println(recipe);
-                    }
-                    recipes.clear();
-                } else if (command.equals("find name")) {
-                    System.out.println("Searched word:");
-                    String searched = scanner.nextLine();
-
-                    addRecipes(scan, recipes);
-
-                    for (Recipe recipe : recipes) {
-                        if (recipe.nameContains(searched)) {
+                        System.out.println("Recipes:");
+                        for (Recipe recipe : recipes) {
                             System.out.println(recipe);
                         }
-                    }
-                    recipes.clear();
-                } else if (command.equals("find cooking time")) {
-                    System.out.println("Max cooking time:");
-                    int max = Integer.valueOf(scanner.nextLine());
+                        recipes.clear();
+                        break;
+                    case "find name":
+                        System.out.println("Searched word:");
+                        String searched = scanner.nextLine();
 
-                    addRecipes(scan, recipes);
+                        addRecipes(scan, recipes);
 
-                    for (Recipe recipe : recipes) {
-                        if (recipe.cookingTimeNotMoreThan(max)) {
-                            System.out.println(recipe);
+                        for (Recipe recipe : recipes) {
+                            if (recipe.nameContains(searched)) {
+                                System.out.println(recipe);
+                            }
                         }
-                    }
-                    recipes.clear();
-                } else if (command.equals("find ingredient")) {
-                    System.out.println("Ingredient:");
-                    String ingredient = scanner.nextLine();
+                        recipes.clear();
+                        break;
+                    case "find cooking time":
+                        System.out.println("Max cooking time:");
+                        int max = Integer.valueOf(scanner.nextLine());
 
-                    addRecipes(scan, recipes);
+                        addRecipes(scan, recipes);
 
-                    for (Recipe recipe : recipes) {
-                        if (recipe.containsIngredient(ingredient)) {
-                            System.out.println(recipe);
+                        for (Recipe recipe : recipes) {
+                            if (recipe.cookingTimeNotMoreThan(max)) {
+                                System.out.println(recipe);
+                            }
                         }
-                    }
-                    recipes.clear();
+                        recipes.clear();
+                        break;
+                    case "find ingredient":
+                        System.out.println("Ingredient:");
+                        String ingredient = scanner.nextLine();
+
+                        addRecipes(scan, recipes);
+
+                        for (Recipe recipe : recipes) {
+                            if (recipe.containsIngredient(ingredient)) {
+                                System.out.println(recipe);
+                            }
+                        }
+                        recipes.clear();
+                        break;
                 }
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
